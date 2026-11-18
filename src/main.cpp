@@ -29,7 +29,7 @@ void setup()
   pinMode(LED_YELLOW, OUTPUT);
 
   // Initialize Buzzer PWM using Core 2.x legacy LEDC API
-  ledcSetup(BUZZER_CHANNEL, 2000, 8); // Channel, base frequency, resolution
+  ledcSetup(BUZZER_CHANNEL, 2000, 8); // Channel, frequency, resolution
   ledcAttachPin(BUZZER_PIN, BUZZER_CHANNEL);
 
   // Configure Button Pins as Inputs with internal pull-ups
@@ -44,7 +44,7 @@ void setup()
   digitalWrite(LED_BLUE, LOW);
   digitalWrite(LED_GREEN, LOW);
   digitalWrite(LED_YELLOW, LOW);
-  ledcWrite(BUZZER_CHANNEL, 0); // Fixed from ledcWriteTone
+  ledcWrite(BUZZER_CHANNEL, 0);
 }
 
 void loop()
@@ -96,7 +96,7 @@ void loop()
   // Buzzer Button -> Activates Buzzer Tone with frequency
   if (digitalRead(BTN_BUZZER) == LOW)
   {
-    ledcWriteTone(BUZZER_CHANNEL, 1000); // Sets 1000 Hz frequency & active tone
+    ledcWriteTone(BUZZER_CHANNEL, 1000); // 1000 Hz tone
     Serial.println("Buzzer Button Pressed -> Sounding Alarm");
   }
   else
